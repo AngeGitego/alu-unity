@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
         Vector3 velocity = move * moveSpeed;
-        velocity.y = rb.velocity.y; // retain vertical velocity
-        rb.velocity = velocity;
+        velocity.y = rb.linearVelocity.y; // retain vertical velocity
+        rb.linearVelocity = velocity;
     }
 
     private void Jump()
