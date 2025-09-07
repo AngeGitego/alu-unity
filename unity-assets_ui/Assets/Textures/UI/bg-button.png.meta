@@ -136,23 +136,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ..
+      name: bg-button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 600
         height: 70
-      alignment: 5
-      pivot: {x: 1, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8ab5f1528db63e4b94930652a598c81
-      internalID: 919387099
+      spriteID: 7a8d215af7f438940b014643775636be
+      internalID: -2144376253
       vertices: []
       indices: 
       edges: []
@@ -171,7 +171,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ..: 919387099
+      bg-button_0: -2144376253
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
