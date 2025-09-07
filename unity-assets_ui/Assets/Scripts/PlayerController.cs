@@ -37,6 +37,15 @@ public class PlayerController : MonoBehaviour
         velocity.y = rb.linearVelocity.y; // retain vertical velocity
         rb.linearVelocity = velocity;
     }
+    public void PauseTimer()
+    {
+        enabled = false; // Stops Update() from running
+    }
+
+    public void ResumeTimer()
+    {
+        enabled = true; // Resumes Update() so timer continues
+    }
 
     private void Jump()
     {
