@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -17,21 +18,42 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    // Prototype: public void Pause()
+    // Pause the game
     public void Pause()
     {
         pauseCanvas.SetActive(true);
-        Time.timeScale = 0f;   // Pause all physics/animations
-        timer.PauseTimer();    // Stop the timer
+        Time.timeScale = 0f;   // Freeze game
+        timer.PauseTimer();    // Pause timer
         isPaused = true;
     }
 
-    // Prototype: public void Resume()
+    // Resume the game
     public void Resume()
     {
         pauseCanvas.SetActive(false);
         Time.timeScale = 1f;   // Resume game
-        timer.ResumeTimer();   // Resume the timer
+        timer.ResumeTimer();
         isPaused = false;
+    }
+
+    // Reload the current active scene
+    public void Restart()
+    {
+        Time.timeScale = 1f;  // Reset timescale before reload
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Load MainMenu scene
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;  // Reset timescale before switching scenes
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    // Load Options scene
+    public void Options()
+    {
+        Time.timeScale = 1f;  // Reset timescale before switching scenes
+        SceneManager.LoadScene("Options");
     }
 }
