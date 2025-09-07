@@ -430,6 +430,8 @@
 "Assets/Materials/Skybox/FarlandSkies/Demo/Scripts/Player/SmoothMouseLook.cs"
 "Assets/Materials/Skybox/FarlandSkies/Demo/Scripts/Skybox/SkyboxChanger.cs"
 "Assets/Materials/Skybox/FarlandSkies/Demo/Scripts/Skybox/SkyboxRotator.cs"
+"Assets/Scripts/MainMenu.cs"
+"Assets/Scripts/OptionsMenu.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
