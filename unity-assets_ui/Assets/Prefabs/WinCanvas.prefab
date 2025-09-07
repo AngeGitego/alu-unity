@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 3151100123326461047}
   - component: {fileID: 4865924176385217140}
   m_Layer: 5
-  m_Name: 'MenuButton '
+  m_Name: ' MenuButton '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -644,7 +644,7 @@ GameObject:
   - component: {fileID: 8369905820913428775}
   - component: {fileID: 1297819575599898359}
   m_Layer: 5
-  m_Name: 'NextButton '
+  m_Name: ' NextButton '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
