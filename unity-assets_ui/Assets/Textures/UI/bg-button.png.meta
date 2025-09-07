@@ -136,14 +136,44 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: bg-button_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 20
+        width: 200
+        height: 50
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -35}
+        - {x: 100, y: 0}
+        - {x: 0, y: 35}
+        - {x: -100, y: 0}
+      physicsShape:
+      - - {x: 0, y: -35}
+        - {x: 100, y: 0}
+        - {x: 0, y: 35}
+        - {x: -100, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a8d215af7f438940b014643775636be
+      internalID: -2144376253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: bg-button_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 600
-        height: 70
-      alignment: 0
+        y: 20
+        width: 200
+        height: 50
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -151,8 +181,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a8d215af7f438940b014643775636be
-      internalID: -2144376253
+      spriteID: 7aebcc7111f25724ab60d69d79ee2517
+      internalID: -174784017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bg-button_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 20
+        width: 200
+        height: 50
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b1497870f2d8db44ab522465f56f782
+      internalID: 2020080329
       vertices: []
       indices: 
       edges: []
@@ -171,7 +223,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bg-button_0: -2144376253
+      bg-button_0: -174784017
+      bg-button_1: -2144376253
+      bg-button_2: 2020080329
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
