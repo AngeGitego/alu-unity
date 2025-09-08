@@ -1,7 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Handles player movement using WASD and jumping with Spacebar.
+/// Starts the Timer when the player first moves or jumps.
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -11,15 +12,31 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded = true;
+    private bool hasMoved = false;
+
+    private Timer timer; // reference to the Timer script
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        timer = FindObjectOfType<Timer>();
     }
 
     private void Update()
     {
-        MovePlayer();
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
+
+        // ✅ Start the timer on first movement OR jump
+        if (!hasMoved && (Mathf.Abs(moveX) > 0.01f || Mathf.Abs(moveZ) > 0.01f || Input.GetKeyDown(KeyCode.Space)))
+        {
+            if (timer != null)
+                timer.StartTimer();
+
+            hasMoved = true;
+        }
+
+        MovePlayer(moveX, moveZ);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -27,16 +44,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void MovePlayer()
+    private void MovePlayer(float moveX, float moveZ)
     {
-        float moveX = Input.GetAxis("Horizontal"); // A/D or Left/Right
-        float moveZ = Input.GetAxis("Vertical");   // W/S or Up/Down
-
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
         Vector3 velocity = move * moveSpeed;
         velocity.y = rb.linearVelocity.y; // retain vertical velocity
         rb.linearVelocity = velocity;
     }
+
     public void PauseTimer()
     {
         enabled = false; // Stops Update() from running
