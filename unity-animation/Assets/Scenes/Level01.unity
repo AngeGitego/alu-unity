@@ -1482,6 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2417717338861543016}
+  offset: {x: 0, y: 2, z: -4}
   mouseSensitivity: 100
   isInverted: 0
 --- !u!1 &1404760701
