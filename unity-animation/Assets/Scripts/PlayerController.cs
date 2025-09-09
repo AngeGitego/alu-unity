@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded = true;
     private bool hasMoved = false;
+    public Animator animator;
+
 
     private Timer timer; // reference to the Timer script
 
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = move * moveSpeed;
         velocity.y = rb.linearVelocity.y; // retain vertical velocity
         rb.linearVelocity = velocity;
+        bool isMoving = (moveX != 0 || moveZ != 0);
+        animator.SetBool("isRunning", isMoving);
     }
 
     public void PauseTimer()
