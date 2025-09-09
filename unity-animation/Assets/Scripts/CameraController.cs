@@ -2,35 +2,46 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;       // Drag the player transform here
-    public float mouseSensitivity = 100f;
-    public bool isInverted = false; // Toggle this in Inspector to test
+    [Header("Target Settings")]
+    public Transform player;        // Player reference
+    public Vector3 offset = new Vector3(0, 5, -7); // Default camera offset
 
-    private float xRotation = 0f;
+    [Header("Mouse Settings")]
+    public float mouseSensitivity = 100f;
+    public bool isInverted = false;
+
+    private float yaw;   // Left/Right rotation
+    private float pitch; // Up/Down rotation
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; // Hide and lock cursor
+        // Initialize rotation based on current transform
+        Vector3 angles = transform.eulerAngles;
+        yaw = angles.y;
+        pitch = angles.x;
+
+        // Lock cursor for better camera control
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    void LateUpdate()
     {
+        // --- Mouse Input ---
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // Apply inversion logic
-        if (isInverted)
-            xRotation += mouseY; // Inverted: move camera up when mouse moves down
-        else
-            xRotation -= mouseY; // Normal: move camera up when mouse moves up
+        yaw += mouseX;
+        pitch -= isInverted ? -mouseY : mouseY;
+        pitch = Mathf.Clamp(pitch, -30f, 60f); // Prevent flipping over
 
-        // Clamp rotation so we don't flip the camera
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        // --- Camera Rotation ---
+        Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
 
-        // Apply rotation to camera
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        // --- Camera Position ---
+        Vector3 desiredPosition = player.position + rotation * offset;
+        transform.position = desiredPosition;
 
-        // Rotate player body horizontally
-        player.Rotate(Vector3.up * mouseX);
+        // --- Look at Player ---
+        transform.LookAt(player.position + Vector3.up * 1.5f); // Aim slightly above player's feet
     }
 }
