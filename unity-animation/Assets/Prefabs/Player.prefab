@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 5
+  animator: {fileID: 0}
 --- !u!54 &7871618675132377754
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -257,6 +258,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: dd24e14148cf532438c96daf7c62bb6c, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 11074ce07366a2c4ca8f5a05a99491b7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1a29fb187628c3c48bcedc70a21945fe, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
