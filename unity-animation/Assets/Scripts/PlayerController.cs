@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>(); // Gets ty's animator
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -25,9 +25,18 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        // Update animator parameter for movement
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
         animator.SetBool("isMoving", isMoving);
+
+        // Detect falling
+        if (!isGrounded && rb.linearVelocity.y < -0.1f) // downward motion
+        {
+            animator.SetBool("isFalling", true);
+        }
+        else
+        {
+            animator.SetBool("isFalling", false);
+        }
     }
 
     private void MovePlayer()
@@ -53,7 +62,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            animator.ResetTrigger("isJumping"); // Stop jump animation
+            animator.ResetTrigger("isJumping");
+            animator.SetBool("isFalling", false);
         }
     }
 }
