@@ -64,6 +64,17 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             animator.ResetTrigger("isJumping");
             animator.SetBool("isFalling", false);
+            animator.SetBool("isGrounded", true); // ✅ Add this line
+
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+            animator.SetBool("isGrounded", false); // ✅ Player no longer on ground
+        }
+    }
+
 }
