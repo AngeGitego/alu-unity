@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Handles player movement using WASD and jumping with Spacebar.
-/// Starts the Timer when the player first moves or jumps.
-/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -12,62 +8,42 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded = true;
-    private bool hasMoved = false;
-    public Animator animator;
-
-
-    private Timer timer; // reference to the Timer script
+    private Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        timer = FindObjectOfType<Timer>();
+        animator = GetComponentInChildren<Animator>(); // Gets ty's animator
     }
 
     private void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-
-        // ✅ Start the timer on first movement OR jump
-        if (!hasMoved && (Mathf.Abs(moveX) > 0.01f || Mathf.Abs(moveZ) > 0.01f || Input.GetKeyDown(KeyCode.Space)))
-        {
-            if (timer != null)
-                timer.StartTimer();
-
-            hasMoved = true;
-        }
-
-        MovePlayer(moveX, moveZ);
+        MovePlayer();
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
         }
+
+        // Update animator parameter for movement
+        bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+        animator.SetBool("isMoving", isMoving);
     }
 
-    private void MovePlayer(float moveX, float moveZ)
+    private void MovePlayer()
     {
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
+
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
         Vector3 velocity = move * moveSpeed;
-        velocity.y = rb.linearVelocity.y; // retain vertical velocity
+        velocity.y = rb.linearVelocity.y;
         rb.linearVelocity = velocity;
-        bool isMoving = (moveX != 0 || moveZ != 0);
-        animator.SetBool("isRunning", isMoving);
-    }
-
-    public void PauseTimer()
-    {
-        enabled = false; // Stops Update() from running
-    }
-
-    public void ResumeTimer()
-    {
-        enabled = true; // Resumes Update() so timer continues
     }
 
     private void Jump()
     {
+        animator.SetTrigger("isJumping");
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         isGrounded = false;
     }
@@ -77,6 +53,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            animator.ResetTrigger("isJumping"); // Stop jump animation
         }
     }
 }
